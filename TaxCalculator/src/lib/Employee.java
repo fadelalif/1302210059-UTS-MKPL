@@ -35,6 +35,12 @@ public class Employee {
 		this.joinedDate = joinedDate;
 	}
 
+	public enum Grade {
+		GRADE_1,
+		GRADE_2,
+		GRADE_3
+	}
+
 	/**
 	 * Fungsi untuk menentukan gaji bulanan pegawai berdasarkan grade kepegawaiannya
 	 * (grade 1: 3.000.000 per bulan, grade 2: 5.000.000 per bulan, grade 3:
@@ -42,22 +48,17 @@ public class Employee {
 	 * Jika pegawai adalah warga negara asing gaji bulanan diperbesar sebanyak 50%
 	 */
 
-	public void setMonthlySalary(int grade) {
-		if (grade == 1) {
-			monthlySalary = 3000000;
-			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
-			}
-		} else if (grade == 2) {
-			monthlySalary = 5000000;
-			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
-			}
-		} else if (grade == 3) {
-			monthlySalary = 7000000;
-			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
-			}
+	public void setMonthlySalary(Grade grade) {
+		switch (grade) {
+			case GRADE_1:
+				this.monthlySalary = isForeigner ? 4500000 : 3000000;
+				break;
+			case GRADE_2:
+				this.monthlySalary = isForeigner ? 4500000 : 5000000;
+				break;
+			case GRADE_3:
+				this.monthlySalary = isForeigner ? 4500000 : 7000000;
+				break;
 		}
 	}
 
